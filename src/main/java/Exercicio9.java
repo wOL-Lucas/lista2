@@ -46,7 +46,23 @@ public class Exercicio9 {
         }
     }
 
-
+    private static double getTotalTax(Double key, double salary, Pair<Double, Double> range) {
+        double taxableSalary = salary - 2000;
+        double totalTax;
+        if(salary < 4500){
+            double firstTax = (taxableSalary - (salary - range.getLeft())) * (key -10) / 100;
+            double secondTax = (salary - range.getLeft()) * key / 100;
+            totalTax = firstTax + secondTax;
+        }
+        else{
+            taxableSalary = taxableSalary - 1000;
+            double firstTax = (taxableSalary - (salary - range.getLeft())) * (key -10) / 100;
+            double secondTax = (salary - range.getLeft()) * key / 100;
+            totalTax = firstTax + secondTax + 80;
+        }
+        return totalTax;
+    }
+    
     public static void main(String [] args) throws RuntimeException{
         HashMap<Double,Pair<Double,Double>> taxPercentage = new HashMap<Double,Pair<Double,Double>>();
         taxPercentage.put(0.0, Pair.of(0.0, 2000.00));
@@ -61,19 +77,7 @@ public class Exercicio9 {
         for(Double key : taxPercentage.keySet()) {
             Pair<Double, Double> range = taxPercentage.get(key);
             if (salary >= range.getLeft() && salary <= range.getRight() && key > 0.0) {
-                double taxableSalary = salary - 2000;
-                double totalTax;
-                if(salary < 4500){
-                    double firstTax = (taxableSalary - (salary - range.getLeft())) * (key -10) / 100;
-                    double secondTax = (salary - range.getLeft()) * key / 100;
-                    totalTax = firstTax + secondTax;
-                }
-                else{
-                    taxableSalary = taxableSalary - 1000;
-                    double firstTax = (taxableSalary - (salary - range.getLeft())) * (key -10) / 100;
-                    double secondTax = (salary - range.getLeft()) * key / 100;
-                    totalTax = firstTax + secondTax + 80;
-                }
+                double totalTax = getTotalTax(key, salary, range);
 
                 System.out.printf("Imposto de renda: R$ %.2f\n", totalTax);
                 break;
