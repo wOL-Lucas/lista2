@@ -74,7 +74,7 @@ public class Exercicio7 {
     public static void main(String [] args) throws RuntimeException{
 
 
-        HashMap<Integer, Pair<String,Double>> map = new HashMap<Integer,Pair<String,Double>>(); //Poderia ter uma abordagem utilizando mais um Hashmap ao inves de um Pair.of mas deu preguica
+        HashMap<Integer, Pair<String,Double>> map = new HashMap<Integer,Pair<String,Double>>();
         map.put(1,Pair.of("cachorro quente",4.00));
         map.put(2,Pair.of("x-salada",4.50));
         map.put(3,Pair.of("x-bacon",5.00));
@@ -93,7 +93,8 @@ public class Exercicio7 {
         }
         catch(Exception e){
             if(e instanceof NullPointerException){
-                System.out.println("Produto não encontrado");
+                System.out.println("Produto não encontrado, tente novamente");
+                main(args);
             }
             else{
                 throw new RuntimeException(e);
