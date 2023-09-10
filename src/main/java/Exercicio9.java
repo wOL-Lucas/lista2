@@ -76,8 +76,6 @@ public class Exercicio9 {
                 }
 
                 System.out.printf("Imposto de renda: R$ %.2f\n", totalTax);
-
-
                 break;
             } else {
                 if(salary < 2000.01){
